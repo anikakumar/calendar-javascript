@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <link rel = 'stylesheet' href = 'calendar.css'>
+    <title>Calendar</title>
+</head>
+<body>
+
+<div class="wrapper">
+  <main>
+    <div class="toolbar">
+      <button id="prev_month_btn" class="prev">Previous Month</button>
+      <button id="next_month_btn" class="next">Next Month</button>
+      <div>
+        <span id="current_month" class="current-month"> </span> / <span style="font-size:18px" id="current_year"> </span>
+      </div>
+    </div>
+    <div class="calendar">
+      <div class="calendar__header">
+        <div>Sunday</div>
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+        <div>Saturday</div>
+        
+      </div>
+      <div id="eventshere">
+      
+      </div>
+    </div>
+  </main>
+</div>
+
+
+<script>
+  (function(){Date.prototype.deltaDays=function(c){return new Date(this.getFullYear(),this.getMonth(),this.getDate()+c)};Date.prototype.getSunday=function(){return this.deltaDays(-1*this.getDay())}})();
+function Week(c){this.sunday=c.getSunday();this.nextWeek=function(){return new Week(this.sunday.deltaDays(7))};this.prevWeek=function(){return new Week(this.sunday.deltaDays(-7))};this.contains=function(b){return this.sunday.valueOf()===b.getSunday().valueOf()};this.getDates=function(){for(var b=[],a=0;7>a;a++)b.push(this.sunday.deltaDays(a));return b}}
+function Month(c,b){this.year=c;this.month=b;this.nextMonth=function(){return new Month(c+Math.floor((b+1)/12),(b+1)%12)};this.prevMonth=function(){return new Month(c+Math.floor((b-1)/12),(b+11)%12)};this.getDateObject=function(a){return new Date(this.year,this.month,a)};this.getWeeks=function(){var a=this.getDateObject(1),b=this.nextMonth().getDateObject(0),c=[],a=new Week(a);for(c.push(a);!a.contains(b);)a=a.nextWeek(),c.push(a);return c}};
+
+// For our purposes, we can keep the current month in a variable in the global scope
+var currentMonth = new Month(2017, 9); // October 2017
+const montharr = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+// Change the month when the "next" button is pressed
+document.getElementById("next_month_btn").addEventListener("click", function(event){
+    document.getElementById("eventshere").innerHTML = "";
+	currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
+	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+	//alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+    document.getElementById("current_month").innerHTML = montharr[currentMonth.month];
+    document.getElementById("current_year").innerHTML = currentMonth.year;
+}, false);
+
+// Change the month when the "prev" button is pressed
+document.getElementById("prev_month_btn").addEventListener("click", function(event){
+    document.getElementById("eventshere").innerHTML = "";
+	currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
+	updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+	//alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+    document.getElementById("current_month").innerHTML = montharr[currentMonth.month];
+    document.getElementById("current_year").innerHTML = currentMonth.year;
+}, false);
+
+function updateCalendar(){
+	const weeks = currentMonth.getWeeks();
+  
+	for(let w in weeks){
+		let days = weeks[w].getDates();
+		$("#eventshere").append("<div class='calendar__week'>");
+    
+    for(let d in days){
+      const dayRegex = /(\d{2})/g;
+      const dayMatch = dayRegex.exec(days[d])[1];
+      $(".calendar__week").append("<div class='calendar__day day'>" + dayMatch + "</div>");
+    }
+    
+    $("#eventshere").append("</div>");
+	}
+  
+}
+
+</script>
+
+</body>
+</html>

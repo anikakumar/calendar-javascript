@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel = 'stylesheet' href = 'calendar.css'>
+    <title>Calendar</title>
+</head>
+<body>
+    <h1>Like Google Calendar &trade; but Worse</h1>
+   <!-- Calendar template adapted from https://www.w3schools.com/howto/howto_css_calendar.asp -->
+    
+    <div id="box">
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="login_btn">Log In</button>
+    <br>
+    <input type="text" id="new_user" placeholder="New Username" />
+    <input type="password" id="new_pwd" placeholder="New Password" />
+    <button id="register_btn">Register</button>
+    </div>
+    
+    <button id="event_btn">Add Event</button>
+    <button id="invite_btn">Invites</button>
+    <button id="logout_btn">Logout</button>
+   
+    <div id="invites"></div>
+    <script>
+        document.getElementById("event_btn").hidden = true;
+        document.getElementById("logout_btn").hidden = true;
+        document.getElementById("invite_btn").hidden = true;
+        document.getElementById("invites").hidden = true;
+    </script>
+    
+    
+    <div id="add_event" >
+        Event Name: <input type="text" id="event_name"/> <br>
+        Date: <input type="date" id="date"  min="0001-01-01" max="2118-10-24"/> <br>
+        Start Time: <input type="time" id="time" min="00:00:00" max="23:59:59" required/> <br>
+        End Time: <input type="time" id="end_time" min="00:00:00" max="23:59:59" required/> <br>
+        Event Tags:
+        <select id="tag">
+          <option> </option>
+          <option value="holiday">Holiday</option>
+          <option value="birthday">Birthday</option>
+          <option value="exam">Exam</option>
+          <option value="important">Important</option>
+        </select><br>
+        Share Event: <input type="text" placeholder="Enter one username" id="share"/> <br>
+        <button id="enter">Enter</button>
+        <button id="removeadd">Cancel</button>
+    </div>
+    <div id="search">
+      Search by Tag: 
+          <input type="radio" name="searchtag" id="h" value="holiday">Holiday
+          <input type="radio" name="searchtag" id="b" value="birthday">Birthday
+          <input type="radio" name="searchtag" id="e" value="exam">Exam
+          <input type="radio" name="searchtag" id="i" value="important">Important
+      <div id="results"></div>
+    </div>
+    <script>
+        document.getElementById("add_event").hidden = true;
+        document.getElementById("search").hidden = true;
+    </script>
+    
+    <div class="month"> 
+  <ul>
+    <button id="prev_month_btn" class="prev">Previous Month</button>
+    <button id="next_month_btn" class="next">Next Month</button>
+    <li>
+        <span id="size"><span id="current_month"> </span> / <span  id="current_year"> </span></span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+    <li>Sunday</li>
+    <li>Monday</li>
+    <li>Tuesday</li>
+    <li>Wednesday</li>
+    <li>Thursday</li>
+    <li>Friday</li>
+    <li>Saturday</li>
+</ul>
+    
+<ul class="days" id="days"> 
+    
+</ul>
+
+<div class="display_events" id="display_events"></div>
+
+
+
+<div id="modify_event" >
+  <input type="text" placeholder="Change event name"/>
+</div>
+<script>
+  document.getElementById("modify_event").hidden = true;
+</script>
+
+
+    
+    
+    <script src="ajax.js"></script> <!-- load the JavaScript file -->
+</body>
+</html>
