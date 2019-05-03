@@ -1,6 +1,6 @@
 # JavaScript, PHP, & MySQL Calendar
 Authors: Anika Kumar, Sarah Peiffer
-Built for Washington University in St. Louis CSE 330 (Rapid Prototype Developement and Creative Programming)
+<br />Built for Washington University in St. Louis CSE 330 (Rapid Prototype Developement and Creative Programming)
 
 ## Calendar Link
 http://ec2-18-220-76-242.us-east-2.compute.amazonaws.com/~akumar/module5group/homepage.html
@@ -20,5 +20,5 @@ Users can search tags using dynamic radio buttons at the top of the page.  They 
 ### Share Events/Invitations
 When a user creates an event, he/she has the option to share the event with another registered user.  That event then goes to that user's invites box.  When the invite button is clicked, a user can see a list of all events he/she has been invited to.  By clicking accept, that event is then added to his/her calendar and will remain associated with both users.  The user that the event has been shared with is not able to successfully edit or delete the events.  An event can only be shared with one other user. 
 
-![Screenshot of Calendar](//Users/anikakumar/Desktop/school/github-repos/calendar-javascript/330calendar.png)
+![Screenshot of Calendar](330calendar.png)
 
