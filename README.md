@@ -6,9 +6,10 @@ Authors: Anika Kumar, Sarah Peiffer
 http://ec2-18-220-76-242.us-east-2.compute.amazonaws.com/~akumar/module5group/homepage.html
 
 ## Login Details - Registered Users and Passwords:
+Feel free to register a new user
 * test: test
 * test2: test2
-<br/ > Feel free to register a new user. 
+
 
 ## Description
 Implemented a calendar that allows users to add and remove events dynamically. Uses JavaScript to process user interactions at the web browser, without ever refreshing the browser after the initial web page load. Employs a MySQL database to store all user and event data and uses prepared queries to prevent SQL Injection attacks. All passwords stored in the database are salted and encrypted. Utilizes AJAX to run server-side scripts that query the database to save and retrieve information, including user accounts and events. 
